@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Sentiment Analysis</title>
+  </head>
+  <body>
+    <h1>Custom Sentiment Analyzer</h1>
+
+    <form method="POST" action="/predict">
+      <textarea name="text" rows="5" cols="50" placeholder="Enter your text here..."></textarea><br><br>
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if prediction %}
+      <h3>Prediction: {{ prediction }}</h3>
+      {% if proba is not none %}
+        <p>Confidence: {{ (proba * 100) | round(2) }}%</p>
+      {% endif %}
+      <p><b>Input:</b> {{ input_text }}</p>
+    {% endif %}
+  </body>
+</html>
